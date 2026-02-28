@@ -3,13 +3,13 @@
 ## What it is
 Lightweight HTML/CSS/JS prototype with multiple screens and navigation to demonstrate the main flow of the CO2Coach project.
 
-Generated on: 03/01/2026
-
 ## How to open
+> No server and no installation required.
+
 1. Download or clone the repository.
 2. Open `index.html` in Chrome/Edge/Firefox (double click).
 
-> No server and no installation required.
+
 
 ## Navigation
 - Use the bottom navigation bar (Home / Log activity / Community / Impact).
