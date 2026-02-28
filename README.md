@@ -1,22 +1,26 @@
-# CO2Coach – Prototipo web (para capturas)
+# CO2Coach — Web Prototype (for screenshots)
 
-## Qué es
-Prototipo ligero (HTML/CSS/JS) con pantallas y navegación para poder demostrar el flujo principal del proyecto CO2Coach.
+## What it is
+Lightweight HTML/CSS/JS prototype with multiple screens and navigation to demonstrate the main flow of the CO2Coach project.
 
-Fecha de generación: 03/01/2026
+Generated on: 03/01/2026
 
-## Cómo abrirlo
-1. Descomprimir el ZIP.
-2. Abrir `index.html` con Chrome/Edge/Firefox (doble clic).
+## How to open
+1. Download or clone the repository.
+2. Open `index.html` in Chrome/Edge/Firefox (double click).
 
-> No se necesita servidor ni instalar nada.
+> No server and no installation required.
 
-## Navegación
-- Usar la barra inferior (Inicio/Registro/Comunidad/Impacto).
-- O abrir la **Guía** (arriba) para saltar a cualquier pantalla (ideal para capturas).
+## Navigation
+- Use the bottom navigation bar (Home / Log activity / Community / Impact).
+- Or open the Guide (top) to jump to any screen (ideal for taking screenshots).
 
-## Demo de cálculo (Transporte)
-1. Ir a `Registrar actividad` → Transporte.
-2. Dejar los valores por defecto: 35 km, 6 L/100 km, 1 pasajero.
-3. Pulsar **Calcular** → se mostrará la pantalla Resultado.
-4. En `Recomendaciones`, pulsar **Hecho** en la primera recomendación para simular CO₂ evitado.
+## Transport calculation demo
+1. Go to `Log activity` → Transport.
+2. Keep default values: 35 km, 6 L/100 km, 1 passenger.
+3. Click **Calculate** → the Results screen is shown.
+4. In `Recommendations`, click **Done** on the first recommendation to simulate avoided CO₂.
+
+## Evidence
+- Screenshots: see `/screenshots`
+- Report / supporting docs: see `/evidence`
