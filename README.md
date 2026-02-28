@@ -9,7 +9,10 @@ Lightweight HTML/CSS/JS prototype with multiple screens and navigation to demons
 1. Download or clone the repository.
 2. Open `index.html` in Chrome/Edge/Firefox (double click).
 
-
+## Live Demo
+```bash
+https://lolett.github.io/daw-sustainability-co2coach/#onboarding
+```
 
 ## Navigation
 - Use the bottom navigation bar (Home / Log activity / Community / Impact).
