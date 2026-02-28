@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CO2Coach * Prototipo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">CO2</div>
+      <div class="brand-text">
+        <div class="brand-name">CO2Coach</div>
+        <div id="screenSubtitle" class="brand-subtitle">Prototipo navegable</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <button class="btn ghost" id="btnGuide">Guía</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <div id="overlay" class="overlay hidden"></div>
+    <aside id="guide" class="sidepanel hidden" aria-label="Guía del prototipo">
+      <div class="sidepanel-header">
+        <div class="sidepanel-title">Guía rápida</div>
+        <button class="btn ghost" id="btnCloseGuide">Cerrar</button>
+      </div>
+
+      <div class="sidepanel-body">
+        <p class="muted">
+          Este prototipo es un “click-through” para mostrar pantallas y navegación.
+          Puedes saltar directamente a cada pantalla para hacer capturas.
+        </p>
+
+        <div class="jump-grid">
+          <button class="jump" data-jump="onboarding">1) Onboarding</button>
+          <button class="jump" data-jump="perfil">2) Perfil rápido</button>
+          <button class="jump" data-jump="dashboard">3) Dashboard</button>
+          <button class="jump" data-jump="registro">4) Registrar actividad</button>
+          <button class="jump" data-jump="resultado">5) Resultado cálculo</button>
+          <button class="jump" data-jump="recomendaciones">6) Recomendaciones</button>
+          <button class="jump" data-jump="comunidad">7) Retos & Comunidad</button>
+          <button class="jump" data-jump="impacto">8) Impacto colectivo</button>
+        </div>
+
+        <hr />
+
+        <div class="card">
+          <div class="card-title">Demo rápida (60–90s)</div>
+          <ol class="small">
+            <li>Ve a <b>Registrar actividad</b> → Transporte.</li>
+            <li>Usa el ejemplo: 35 km, 6 L/100 km, 1 pasajero.</li>
+            <li>Pulsa <b>Calcular</b> → verás el resultado.</li>
+            <li>En <b>Recomendaciones</b>, marca “Hecho”.</li>
+            <li>Revisa <b>Dashboard</b> e <b>Impacto colectivo</b>.</li>
+          </ol>
+        </div>
+      </div>
+    </aside>
+
+    <section class="stage">
+      <div class="phone">
+        <div class="phone-status">
+          <span id="clock">09:41</span>
+          <span class="status-right">📶  🔋</span>
+        </div>
+
+        <div class="phone-body">
+          <!-- SCREEN: Onboarding -->
+          <section class="screen" data-screen="onboarding">
+            <div class="hero">
+              <h1>Controla tu huella de CO₂</h1>
+              <p class="muted">
+                CO2Coach calcula tu huella en <b>kgCO₂e</b>, propone acciones concretas y mide el impacto tanto personal como colectivo.
+              </p>
+              <div class="pill-row">
+                <span class="pill">Transporte</span>
+                <span class="pill">Hogar</span>
+                <span class="pill">Alimentación</span>
+                <span class="pill">Consumo</span>
+                <span class="pill">Ocio</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Objetivo anual</div>
+              <p class="small">Reducir ~1 tonelada de CO₂ por usuario/a mediante hábitos realistas y medibles.</p>
+            </div>
+
+            <div class="actions">
+              <button class="btn primary" data-go="perfil">Empezar</button>
+              <button class="btn ghost" data-go="dashboard">Ver demo sin perfil</button>
+            </div>
+          </section>
+
+          <!-- SCREEN: Perfil -->
+          <section class="screen hidden" data-screen="perfil">
+            <h2>Perfil rápido</h2>
+            <p class="muted small">Esto mejora la personalización. Puedes cambiarlo después.</p>
+
+            <div class="form">
+              <label>Nombre
+                <input id="nameInput" type="text" placeholder="Ej. Manuel" />
+              </label>
+
+              <label>Dieta
+                <select id="dietSelect">
+                  <option value="omnivora">Omnívora</option>
+                  <option value="vegetariana">Vegetariana</option>
+                  <option value="vegana">Vegana</option>
+                </select>
+              </label>
+
+              <label>Vivienda
+                <select id="homeSelect">
+                  <option value="solo">Vivo solo/a</option>
+                  <option value="pareja">Vivo en pareja</option>
+                  <option value="familia">Vivo en familia/compartido</option>
+                </select>
+              </label>
+
+              <label class="row">
+                <input id="carCheckbox" type="checkbox" checked />
+                <span>Uso coche durante la semana</span>
+              </label>
+            </div>
+
+            <div class="actions">
+              <button class="btn ghost" data-go="onboarding">Atrás</button>
+              <button class="btn primary" data-go="dashboard">Continuar</button>
+            </div>
+          </section>
+
+          <!-- SCREEN: Dashboard -->
+          <section class="screen hidden" data-screen="dashboard">
+            <div class="dash-head">
+              <div>
+                <h2>Dashboard</h2>
+                <div class="muted small" id="welcomeText">Resumen semanal</div>
+              </div>
+              <div class="chip" id="weekDelta">-6% vs. semana anterior</div>
+            </div>
+
+            <div class="grid2">
+              <div class="metric">
+                <div class="metric-label">Huella semanal</div>
+                <div class="metric-value" id="weeklyTotal">74,2</div>
+                <div class="metric-unit">kgCO₂e</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">CO₂ evitado</div>
+                <div class="metric-value" id="avoidedTotal">2,4</div>
+                <div class="metric-unit">kgCO₂e</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Desglose por categorías</div>
+              <div class="bars" id="categoryBars"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Acción sugerida</div>
+              <p class="small" id="suggestionText">Prueba a sustituir 2 trayectos cortos por bus esta semana.</p>
+              <div class="actions inline">
+                <button class="btn ghost" data-go="recomendaciones">Ver recomendaciones</button>
+                <button class="btn primary" data-go="registro">Registrar actividad</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN: Registro -->
+          <section class="screen hidden" data-screen="registro">
+            <h2>Registrar actividad</h2>
+            <p class="muted small">Elige una categoría y añade datos sencillos. Te devolvemos CO₂ y un consejo.</p>
+
+            <div class="chips">
+              <button class="chipbtn active" data-cat="transporte">Transporte</button>
+              <button class="chipbtn" data-cat="hogar">Hogar</button>
+              <button class="chipbtn" data-cat="alimentacion">Alimentación</button>
+              <button class="chipbtn" data-cat="consumo">Consumo</button>
+              <button class="chipbtn" data-cat="ocio">Ocio</button>
+            </div>
+
+            <div id="formTransporte" class="card">
+              <div class="card-title">Transporte (coche)</div>
+              <div class="form">
+                <label>Distancia (km)
+                  <input id="kmInput" type="number" step="0.1" value="35" />
+                </label>
+                <label>Consumo (L/100 km)
+                  <input id="consumptionInput" type="number" step="0.1" value="6" />
+                </label>
+                <label>Pasajeros
+                  <input id="passengersInput" type="number" step="1" value="1" />
+                </label>
+                <label>Combustible
+                  <select id="fuelSelect">
+                    <option value="gasolina">Gasolina</option>
+                    <option value="diesel">Diésel</option>
+                  </select>
+                </label>
+              </div>
+              <div class="actions">
+                <button class="btn ghost" data-go="dashboard">Cancelar</button>
+                <button class="btn primary" id="btnCalc">Calcular</button>
+              </div>
+            </div>
+
+            <div id="formPlaceholder" class="card hidden">
+              <div class="card-title">Categoría seleccionada</div>
+              <p class="small muted">En el prototipo, solo se calcula “Transporte (coche)” para la demo. Las demás categorías se describen en el informe.</p>
+            </div>
+          </section>
+
+          <!-- SCREEN: Resultado -->
+          <section class="screen hidden" data-screen="resultado">
+            <h2>Resultado</h2>
+            <div class="card">
+              <div class="card-title">Emisiones estimadas</div>
+              <div class="big" id="resultValue">—</div>
+              <div class="muted small">kgCO₂e (para este registro)</div>
+              <div class="small muted" id="resultBreakdown">—</div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Consejo rápido</div>
+              <p class="small" id="microTip">Si sustituyes 2 trayectos cortos por bus, podrías ahorrar ~1,8 kgCO₂e/semana.</p>
+              <div class="actions inline">
+                <button class="btn ghost" data-go="registro">Registrar otro</button>
+                <button class="btn primary" data-go="recomendaciones">Ver recomendaciones</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN: Recomendaciones -->
+          <section class="screen hidden" data-screen="recomendaciones">
+            <div class="dash-head">
+              <div>
+                <h2>Recomendaciones</h2>
+                <div class="muted small">Priorizadas por impacto + viabilidad</div>
+              </div>
+              <div class="chip">Semana actual</div>
+            </div>
+
+            <div class="card rec" data-rec="bus">
+              <div class="card-title">Cambiar 2 trayectos cortos por bus</div>
+              <p class="small muted">Porque tu mayor impacto esta semana es transporte y sueles hacer trayectos cortos.</p>
+              <div class="rec-row">
+                <span class="tag">Ahorro estimado: 1,8 kgCO₂e/sem</span>
+                <div class="rec-actions">
+                  <button class="btn ghost rec-no">No me interesa</button>
+                  <button class="btn primary rec-yes">Hecho</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card rec" data-rec="walk">
+              <div class="card-title">1 día de “moverse andando”</div>
+              <p class="small muted">Ideal si tienes trayectos &lt; 2 km. Suma puntos de reto sin esfuerzo extra.</p>
+              <div class="rec-row">
+                <span class="tag">Ahorro estimado: 0,9 kgCO₂e/sem</span>
+                <div class="rec-actions">
+                  <button class="btn ghost rec-no">No me interesa</button>
+                  <button class="btn primary rec-yes">Hecho</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card rec" data-rec="led">
+              <div class="card-title">Cambiar a bombillas LED en 1 estancia</div>
+              <p class="small muted">Mejora hogar con impacto mantenido y poco coste. Disponible en marketplace.</p>
+              <div class="rec-row">
+                <span class="tag">Ahorro estimado: 0,6 kgCO₂e/sem</span>
+                <div class="rec-actions">
+                  <button class="btn ghost" data-go="marketplace">Ver marketplace</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="btn ghost" data-go="dashboard">Volver</button>
+              <button class="btn primary" data-go="comunidad">Ver retos & comunidad</button>
+            </div>
+          </section>
+
+          <!-- SCREEN: Comunidad -->
+          <section class="screen hidden" data-screen="comunidad">
+            <div class="dash-head">
+              <div>
+                <h2>Retos & Comunidad</h2>
+                <div class="muted small">Motivación sin rankings tóxicos</div>
+              </div>
+              <div class="chip" id="pointsChip">Puntos: 120</div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Reto semanal</div>
+              <p class="small">Completa <b>3 registros</b> de transporte sostenible.</p>
+              <div class="progress">
+                <div class="progress-bar" id="challengeBar" style="width: 40%"></div>
+              </div>
+              <div class="muted small" id="challengeText">Progreso: 1/3</div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Comunidad local</div>
+              <p class="small"><b>CO2Coach Murcia Centro</b> — objetivo mensual: 1.000 kgCO₂e evitados.</p>
+              <div class="grid2">
+                <div class="metric smallmetric">
+                  <div class="metric-label">Tu contribución</div>
+                  <div class="metric-value" id="myContribution">2,4</div>
+                  <div class="metric-unit">kgCO₂e</div>
+                </div>
+                <div class="metric smallmetric">
+                  <div class="metric-label">Grupo (mes)</div>
+                  <div class="metric-value" id="groupContribution">312</div>
+                  <div class="metric-unit">kgCO₂e</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Ranking amistoso (amigos)</div>
+              <div class="rank">
+                <div><b>1.</b> Papá <span class="muted">(+8%)</span></div>
+                <div><b>2.</b> Yo <span class="muted">(+6%)</span></div>
+                <div><b>3.</b> Javier <span class="muted">(+3%)</span></div>
+              </div>
+              <p class="muted small">Se ordena por mejora (%) para ser justo.</p>
+            </div>
+
+            <div class="actions">
+              <button class="btn ghost" data-go="recomendaciones">Atrás</button>
+              <button class="btn primary" data-go="impacto">Ver impacto colectivo</button>
+            </div>
+          </section>
+
+          <!-- SCREEN: Impacto -->
+          <section class="screen hidden" data-screen="impacto">
+            <div class="dash-head">
+              <div>
+                <h2>Impacto colectivo</h2>
+                <div class="muted small">Lo que logramos entre todos</div>
+              </div>
+              <div class="chip" id="activeUsersChip">Activos: 12.480</div>
+            </div>
+
+            <div class="grid2">
+              <div class="metric">
+                <div class="metric-label">CO₂ evitado total</div>
+                <div class="metric-value" id="collectiveAvoided">48.120</div>
+                <div class="metric-unit">kgCO₂e</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Media por usuario</div>
+                <div class="metric-value" id="avgPerUser">0,92</div>
+                <div class="metric-unit">tCO₂e/año</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Top comunidades (mes)</div>
+              <div class="rank">
+                <div><b>1.</b> Murcia Centro — 312 kgCO₂e</div>
+                <div><b>2.</b> Alumnos FP DAW 2º — 265 kgCO₂e</div>
+                <div><b>3.</b> Vecinos La Manga del Mar Menor — 198 kgCO₂e</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Contexto (informativo)</div>
+              <p class="small muted">
+                Se puede integrar Climate Trace para mostrar comparativas por región/sector (solo a modo contexto).
+              </p>
+            </div>
+
+            <div class="actions">
+              <button class="btn ghost" data-go="dashboard">Ir a dashboard</button>
+              <button class="btn primary" data-go="onboarding">Reiniciar demo</button>
+            </div>
+          </section>
+
+          <!-- SCREEN: Marketplace -->
+          <section class="screen hidden" data-screen="marketplace">
+            <h2>Marketplace</h2>
+            <p class="muted small">Productos/servicios seleccionados con criterios anti-greenwashing.</p>
+            <div class="card">
+              <div class="card-title">Bombillas LED (pack)</div>
+              <p class="small">Ahorro estimado: ~X kgCO₂e/año (según uso). Incluye supuestos y verificación.</p>
+              <div class="actions inline">
+                <button class="btn ghost" data-go="recomendaciones">Atrás</button>
+                <button class="btn primary" disabled>Aplicar cupón</button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <nav class="bottomnav" aria-label="Navegación inferior">
+          <button class="tab" data-go="dashboard">🏠<span>Inicio</span></button>
+          <button class="tab" data-go="registro">➕<span>Registro</span></button>
+          <button class="tab" data-go="comunidad">👥<span>Comunidad</span></button>
+          <button class="tab" data-go="impacto">🌍<span>Impacto</span></button>
+        </nav>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
